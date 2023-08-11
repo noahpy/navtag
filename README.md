@@ -61,6 +61,10 @@ LABEL : PATH
 d11 : dir1/dir1.1
 d2 : dir2
 ```
+### Add new shortcut (for current directory)
+```shell
+mark my_shortcut
+```
 ### Enter dir2
 ```shell
 cdx d2
@@ -72,4 +76,8 @@ cdx d2/
 ### Move file1.txt to dir2
 ```shell
 mvx d11/file1.txt d2/.
+```
+### Copy file3.txt to dir1.1 as file4.txt
+```shell
+cpx file3.txt d1.1/file4.txt
 ```
