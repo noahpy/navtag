@@ -36,9 +36,11 @@ The following list is a summary on the usage of every command:
 - `marks`: list all shortcuts
 - `mark <label>`: create a shortcut for current working directory with given label
 - `unmark <label>`: remove shortcut with given label
-- `cdx`: execute cd after translating every input arg
-- `mvx`: execute mv after translating every input arg
-- `cpx`: execute cp after translating every input arg
+- `cdx`: execute cd after translating every input path
+- `mvx`: execute mv after translating every input path
+- `cpx`: execute cp after translating every input path
+- `mkx`: execute mkdir after translating every input path
+- `mcx`: execute mkdir then cd after translating every input path
 
 ## Examples:
 Here are some small examples given a file structure and shortcuts like below:
