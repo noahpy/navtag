@@ -59,7 +59,7 @@ LABEL : PATH
 d11 : dir1/dir1.1
 d2 : dir2
 ```
-> Enter dir2
+### Enter dir2
 ```shell
 cdx d2
 ```
@@ -67,7 +67,7 @@ or
 ```shell
 cdx d2/
 ```
-> Move file1.txt to dir2
+### Move file1.txt to dir2
 ```shell
 mvx d11/file1.txt d2/.
 ```
