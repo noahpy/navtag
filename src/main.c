@@ -1,3 +1,4 @@
+#define _XOPEN_SOURCE 500
 
 #include "utils.h"
 #include <getopt.h>
@@ -5,6 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <limits.h>
 
 #define MAX_CONFIG_PATH_LEN 50
 
@@ -65,7 +67,14 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "Not enough optional arguments found: need 2.\n");
                 return EXIT_FAILURE;
             }
-            if(add_mark(argv[optind], argv[optind+1], mark_file_path)){
+
+            char absolute_path[PATH_MAX];
+            if (absolute_path != realpath(argv[optind+1], absolute_path)) {
+                perror("Error resolving absolute path");
+                return EXIT_FAILURE;
+            }
+
+            if(add_mark(argv[optind], absolute_path, mark_file_path)){
                 fprintf(stderr, "Could not add mark.\n");
                 return EXIT_FAILURE;
             }
