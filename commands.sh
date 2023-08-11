@@ -23,4 +23,3 @@ function cpx(){
     cp $(navtag $mfp -t $@)
 }
 
-mfp="/home/noah/projects/navtag/marks.txt"
