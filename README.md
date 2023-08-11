@@ -35,7 +35,7 @@ navtag $mfp -t [label]
 The following commands are implemented in commands.sh, using `navtag`.
 The following list is a summary on the usage of every command:
 - `marks`: list all shortcuts
-- `mark <label>`: create a shortcut for current working directory with given label
+- `mark <label> [path]`: create a shortcut for given the optional path and label. The default path is the current working directory
 - `unmark <label>`: remove shortcut with given label
 - `cdx`: execute cd after translating every input path
 - `mvx`: execute mv after translating every input path
@@ -80,5 +80,5 @@ mvx d11/file1.txt d2/.
 ```
 ### Copy file3.txt to dir1.1 as file4.txt
 ```shell
-cpx file3.txt d1.1/file4.txt
+cpx file3.txt d11/file4.txt
 ```
