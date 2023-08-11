@@ -8,7 +8,7 @@ Path shortcut manager CLI for Unix-like systems.
 
 ## Quickstart
 1. Clone this repository to any destination
-2. Enter cloned repo and run:
+2. Enter the cloned repo and run:
 ```shell
 ./install.sh
 ```
