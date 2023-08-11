@@ -39,3 +39,35 @@ The following list is a summary on the usage of every command:
 - `cdx`: execute cd after translating every input arg
 - `mvx`: execute mv after translating every input arg
 - `cpx`: execute cp after translating every input arg
+
+## Examples:
+Here are some small examples given a file structure and shortcuts like below:
+```shell
+.
+├── dir1
+│   └── dir1.1
+│       └── file1.txt
+├── dir2
+│   └── file2.txt
+└── file3.txt
+```
+```shell
+$ marks
+Mark file: /some/path/file.txt
+LABEL : PATH
+------------
+d11 : dir1/dir1.1
+d2 : dir2
+```
+> Enter dir2
+```shell
+cdx d2
+```
+or
+```shell
+cdx d2/
+```
+> Move file1.txt to dir2
+```shell
+mvx d11/file1.txt d2/.
+```
