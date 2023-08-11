@@ -236,7 +236,11 @@ void translate_paths(size_t n, char** paths, char* file_path){
     }
     printf("\n");
 
-    free(marks.labels);
-    free(marks.paths);
+    size_t i = 0;
+    while(i < marks.len){
+        free(marks.labels[i]);
+        free(marks.paths[i]);
+        i++;
+    }
 }
 
