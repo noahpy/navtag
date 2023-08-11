@@ -1,6 +1,14 @@
 
 function mark(){
-    navtag $mfp -a $1 $(pwd)
+    if [ $# -eq 1 ]
+    then
+        navtag $mfp -a $1 $(pwd)
+    fi
+
+    if [ $# -gt 1 ]
+    then
+        navtag $mfp -a $1 $2
+    fi
 }
 
 function unmark(){
