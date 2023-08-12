@@ -59,7 +59,7 @@ void print_labels(char* file_path){
             return;
         }
         buffer[split_index] = '\0';
-        printf("%s\n", buffer, buffer+split_index+1);
+        printf("%s\n", buffer);
     }
     fclose(file);
 }

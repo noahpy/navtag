@@ -65,7 +65,7 @@ _navtag_dir() {
        done < <(navtag $mfp -L)
    fi 
 }
-complete -F _navtag_dir2 -o nospace cdx mcx
+complete -F _navtag_dir -o nospace cdx mcx
 
 _navtag_filedir() {
    local cur
