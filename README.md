@@ -6,7 +6,7 @@ Path shortcut manager CLI for Unix-like systems.
 - Resolve shortcut labels to their path
 - Resolve paths including shortcut labels to their total path
 - Shell extension: shortcut support for the majority of built-in commands
-- Path / label autocompletion for extended commandsnavtag shortcut
+- Path / label tab-completion for extended commands
 
 ## Quickstart
 1. Clone this repository to any destination
