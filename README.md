@@ -3,10 +3,10 @@ Path shortcut manager CLI for Unix-like systems.
 
 ## Features
 - List, add and remove shortcuts
-- Translate shortcut labels to paths
-- Translate paths including shortcut label to paths
-- Shell extension: shortcut manager commands
-- Path / label autocompletion for shortcut manager commands
+- Resolve shortcut labels to their path
+- Resolve paths including shortcut labels to their total path
+- Shell extension: shortcut support for the majority of built-in commands
+- Path / label tab-completion for extended commands
 
 ## Quickstart
 1. Clone this repository to any destination
@@ -35,15 +35,18 @@ navtag $mfp -t [label]
 ```
 ## Shell extension
 The following commands are implemented in commands.sh, using `navtag`.
-The following list is a summary on the usage of every command:
+They shall be used for managing and manipulating the shortcuts.
+This is a summary on the usage of every command:
 - `marks`: list all shortcuts
 - `mark <label> [path]`: create a shortcut for given the optional path and label. The default path is the current working directory
 - `unmark <label>`: remove shortcut with given label
-- `cdx`: execute cd after translating every input path
-- `mvx`: execute mv after translating every input path
-- `cpx`: execute cp after translating every input path
-- `mkx`: execute mkdir after translating every input path
-- `mcx`: execute mkdir then cd after translating every input path
+
+The following list are all implemented built-in commands which support shortcuts:
+- cd
+- cp
+- mv
+- mc
+- mkdir
 
 ## Examples:
 Here are some small examples given a file structure and shortcuts like below:
@@ -70,17 +73,17 @@ mark my_shortcut
 ```
 ### Enter dir2
 ```shell
-cdx d2
+cd d2
 ```
 or
 ```shell
-cdx d2/
+cd d2/
 ```
 ### Move file1.txt to dir2
 ```shell
-mvx d11/file1.txt d2/.
+mv d11/file1.txt d2/.
 ```
 ### Copy file3.txt to dir1.1 as file4.txt
 ```shell
-cpx file3.txt d11/file4.txt
+cp file3.txt d11/file4.txt
 ```
