@@ -41,3 +41,21 @@ function mcx(){
     cd $results
 }
 
+
+_navtag_dir() {
+   local cur
+   cur=$(navtag $mfp -t $2)
+   _filedir -d
+}
+complete -F _navtag_dir cdx
+complete -F _navtag_dir mcx
+
+_navtag_filedir() {
+   local cur
+   cur=$(navtag $mfp -t $2)
+   _filedir
+}
+complete -F _navtag_filedir mvx
+complete -F _navtag_filedir cpx
+
+

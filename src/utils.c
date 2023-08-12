@@ -227,6 +227,10 @@ void translate_paths(size_t n, char** paths, char* file_path){
         paths[i][split_index] = '\0';
         char* result = match_token(paths[i], marks);
         printf("%s", result);
+        // keep input slash
+        if(token_len - split_index == 1){
+            printf("/");
+        }
         if(split_index < token_len - 1){
             printf("/%s", paths[i] + split_index + 1);
         }
