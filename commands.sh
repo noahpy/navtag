@@ -53,6 +53,7 @@ _navtag_dir() {
             unset 'COMPREPLY[$i]'
             continue
        fi
+       # Replace prefix with label
        new_element="${original_element/${cur}/${2}}"
        COMPREPLY[$i]="$new_element"
    done
@@ -78,6 +79,7 @@ _navtag_filedir() {
             unset 'COMPREPLY[$i]'
             continue
        fi
+       # Replace prefix with label
        new_element="${original_element/${cur}/${2}}"
        COMPREPLY[$i]="$new_element"
    done
@@ -92,4 +94,3 @@ _navtag_filedir() {
 complete -F _navtag_filedir -o nospace mv cp
 
 
-mfp="/home/noah/projects/navtag/marks.txt"
