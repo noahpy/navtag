@@ -19,26 +19,26 @@ function marks(){
     navtag $mfp -l
 }
 
-function cdx(){
-    cd $(navtag $mfp -t $@)
+cd(){
+    builtin cd $(navtag $mfp -t $@)
 }
 
-function mvx(){
-    mv $(navtag $mfp -t $@)
+mv(){
+    $(which mv) $(navtag $mfp -t $@)
 }
 
-function cpx(){
-    cp $(navtag $mfp -t $@)
+cp(){
+    $(which cp) $(navtag $mfp -t $@)
 }
 
-function mkx(){
-    mkdir $(navtag $mfp -t $@)
+mkdir(){
+    $(which mkdir) $(navtag $mfp -t $@)
 }
 
-function mcx(){
+mc(){
     results=$(navtag $mfp -t $@)
-    mkdir $results
-    cd $results
+    $(which mkdir) $results
+    builtin cd $results
 }
 
 
@@ -65,7 +65,7 @@ _navtag_dir() {
        done < <(navtag $mfp -L)
    fi 
 }
-complete -F _navtag_dir -o nospace cdx mcx
+complete -F _navtag_dir -o nospace cd mc mkdir
 
 _navtag_filedir() {
    local cur
@@ -89,5 +89,7 @@ _navtag_filedir() {
        done < <(navtag $mfp -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mvx cpx
+complete -F _navtag_filedir -o nospace mv cp
 
+
+mfp="/home/noah/projects/navtag/marks.txt"
