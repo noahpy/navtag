@@ -49,11 +49,13 @@ _navtag_dir() {
    _filedir -d
    if [[ $2 != *"/"* ]]; then
        while IFS="" read -r line || [ -n "$line" ]; do
-           COMPREPLY+=( "$(echo $line)" )
+            if [[ $line == $2* ]]; then
+               COMPREPLY+=( $line )
+            fi
        done < <(navtag $mfp -L)
-   fi
+   fi 
 }
-complete -F _navtag_dir cdx mcx
+complete -F _navtag_dir cdx mcx -o nospace
 
 _navtag_filedir() {
    local cur
@@ -61,9 +63,12 @@ _navtag_filedir() {
    _filedir
    if [[ $2 != *"/"* ]]; then
        while IFS="" read -r line || [ -n "$line" ]; do
-           COMPREPLY+=( "$(echo $line)" )
+           if [[ $line == $2* ]]; then
+               COMPREPLY+=( $line )
+           fi
        done < <(navtag $mfp -L)
    fi
 }
 complete -F _navtag_filedir mvx cpx
 
+mfp="/home/noah/projects/navtag/marks.txt"
