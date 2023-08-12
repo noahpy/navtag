@@ -29,9 +29,9 @@ void print_marks(char* file_path){
     // copy everything from file to tmp file, except specified label
     printf("LABEL : PATH\n");
     printf("------------\n");
-    while(fgets(buffer, MAX_LABEL_SIZE - 1, file)){ 
+    while(fgets(buffer, MAX_LABEL_SIZE, file)){ 
         size_t split_index = find_index(buffer, ':');
-        if(split_index >= MAX_LABEL_SIZE - 1){
+        if(split_index >= MAX_LABEL_SIZE){
             fprintf(stderr, "Found too long entry in %s:\n%s\n", file_path, buffer);
             fclose(file);
             return;
@@ -51,9 +51,9 @@ void print_labels(char* file_path){
         return;
     }
     // copy everything from file to tmp file, except specified label
-    while(fgets(buffer, MAX_LABEL_SIZE - 1, file)){ 
+    while(fgets(buffer, MAX_LABEL_SIZE, file)){ 
         size_t split_index = find_index(buffer, ':');
-        if(split_index >= MAX_LABEL_SIZE - 1){
+        if(split_index >= MAX_LABEL_SIZE){
             fprintf(stderr, "Found too long entry in %s:\n%s\n", file_path, buffer);
             fclose(file);
             return;
@@ -79,9 +79,9 @@ int add_mark(char* label, char* path, char* file_path){
         return 1;
     }
     // check if label already exits
-    while(fgets(buffer, MAX_LABEL_SIZE - 1, file)){ 
+    while(fgets(buffer, MAX_LABEL_SIZE, file)){ 
         size_t split_index = find_index(buffer, ':');
-        if(split_index >= MAX_LABEL_SIZE - 1){
+        if(split_index >= MAX_LABEL_SIZE){
             fprintf(stderr, "Found too long entry in %s:\n%s\n", file_path, buffer);
             fclose(file);
             return 1;

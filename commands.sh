@@ -100,3 +100,4 @@ _navtag_filedir() {
 complete -F _navtag_filedir -o nospace mv cp touch
 
 
+mfp="/home/noah/projects/navtag/marks.txt"
