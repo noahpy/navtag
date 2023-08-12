@@ -5,6 +5,8 @@ Path shortcut manager CLI for Unix-like systems.
 - List, add and remove shortcuts
 - Translate shortcut labels to paths
 - Translate paths including shortcut label to paths
+- Shell extension: shortcut manager commands
+- Path / label autocompletion for shortcut manager commands
 
 ## Quickstart
 1. Clone this repository to any destination
