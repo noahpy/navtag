@@ -42,20 +42,28 @@ function mcx(){
 }
 
 
+
 _navtag_dir() {
    local cur
    cur=$(navtag $mfp -t $2)
    _filedir -d
+   if [[ $2 != *"/"* ]]; then
+       while IFS="" read -r line || [ -n "$line" ]; do
+           COMPREPLY+=( "$(echo $line)" )
+       done < <(navtag $mfp -L)
+   fi
 }
-complete -F _navtag_dir cdx
-complete -F _navtag_dir mcx
+complete -F _navtag_dir cdx mcx
 
 _navtag_filedir() {
    local cur
    cur=$(navtag $mfp -t $2)
    _filedir
+   if [[ $2 != *"/"* ]]; then
+       while IFS="" read -r line || [ -n "$line" ]; do
+           COMPREPLY+=( "$(echo $line)" )
+       done < <(navtag $mfp -L)
+   fi
 }
-complete -F _navtag_filedir mvx
-complete -F _navtag_filedir cpx
-
+complete -F _navtag_filedir mvx cpx
 

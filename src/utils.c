@@ -44,6 +44,26 @@ void print_marks(char* file_path){
     fclose(file);
 }
 
+void print_labels(char* file_path){
+    FILE* file = fopen(file_path, "a+");
+    if(!file){
+        fprintf(stderr, "Could not open file: %s\n", file_path);
+        return;
+    }
+    // copy everything from file to tmp file, except specified label
+    while(fgets(buffer, MAX_LABEL_SIZE - 1, file)){ 
+        size_t split_index = find_index(buffer, ':');
+        if(split_index >= MAX_LABEL_SIZE - 1){
+            fprintf(stderr, "Found too long entry in %s:\n%s\n", file_path, buffer);
+            fclose(file);
+            return;
+        }
+        buffer[split_index] = '\0';
+        printf("%s\n", buffer, buffer+split_index+1);
+    }
+    fclose(file);
+}
+
 int add_mark(char* label, char* path, char* file_path){
     size_t label_size = strlen(label);
     if(label_size > MAX_LABEL_SIZE){

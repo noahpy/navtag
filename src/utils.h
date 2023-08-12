@@ -21,6 +21,11 @@ struct marks load_marks(char* file_path);
  *   - file_path (char*): path to mark file*/
 void print_marks(char* file_path);
 
+/* Prints every currently stored label.
+ * @params:
+ *   - file_path (char*): path to mark file*/
+void print_labels(char* file_path);
+
 /* Add a new mark, consisting of a path and a label, to the specified file,
  * if the given label does not exist yet.
  * @params:

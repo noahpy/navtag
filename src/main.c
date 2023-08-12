@@ -27,18 +27,20 @@ char *HELP_MSG =
     "  -d: Delete marks. The first positional argument is the \n"
     "      label of the mark that needs to be removed.\n"
     "  -l: List and print all marks.\n"
+    "  -L: List and print all labels.\n"
     "  -h: Print this message.";
 
 
 int main(int argc, char **argv) { 
     char optchar;
     char modi = 0;
-    while ((optchar = getopt(argc, argv, "adhtl")) != -1) {
+    while ((optchar = getopt(argc, argv, "adhtlL")) != -1) {
         switch (optchar) {
             case 't':
             case 'a': 
             case 'd':
             case 'l':
+            case 'L':
                 if (modi) {
                     fprintf(stderr, "Found more than one option.\n");
                     return EXIT_FAILURE;
@@ -94,6 +96,10 @@ int main(int argc, char **argv) {
         case 'l':
             printf("Mark file: %s\n", mark_file_path);
             print_marks(mark_file_path);
+            break;
+        case 'L':
+            print_labels(mark_file_path);
+            break;
     }
 }
 
