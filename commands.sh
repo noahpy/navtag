@@ -41,6 +41,12 @@ mc(){
     builtin cd $results
 }
 
+touch(){
+    $(which touch) $(navtag $mfp -t $@)
+}
+
+
+
 
 _navtag_dir() {
    local cur
@@ -91,6 +97,6 @@ _navtag_filedir() {
        done < <(navtag $mfp -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mv cp
+complete -F _navtag_filedir -o nospace mv cp touch
 
 
