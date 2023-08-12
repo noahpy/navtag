@@ -42,11 +42,21 @@ function mcx(){
 }
 
 
-
 _navtag_dir() {
    local cur
    cur=$(navtag $mfp -t $2)
    _filedir -d
+   for i in "${!COMPREPLY[@]}"; do
+       original_element="${COMPREPLY[$i]}"
+       # Remove element if it is the same as the prefix
+       if [ "$original_element" == "$prefix" ]; then
+            unset 'COMPREPLY[$i]'
+            continue
+       fi
+       new_element="${original_element/${cur}/${2}}"
+       COMPREPLY[$i]="$new_element"
+   done
+
    if [[ $2 != *"/"* ]]; then
        while IFS="" read -r line || [ -n "$line" ]; do
             if [[ $line == $2* ]]; then
@@ -55,12 +65,22 @@ _navtag_dir() {
        done < <(navtag $mfp -L)
    fi 
 }
-complete -F _navtag_dir cdx mcx -o nospace
+complete -F _navtag_dir2 -o nospace cdx mcx
 
 _navtag_filedir() {
    local cur
    cur=$(navtag $mfp -t $2)
    _filedir
+   for i in "${!COMPREPLY[@]}"; do
+       original_element="${COMPREPLY[$i]}"
+       # Remove element if it is the same as the prefix
+       if [ "$original_element" == "$prefix" ]; then
+            unset 'COMPREPLY[$i]'
+            continue
+       fi
+       new_element="${original_element/${cur}/${2}}"
+       COMPREPLY[$i]="$new_element"
+   done
    if [[ $2 != *"/"* ]]; then
        while IFS="" read -r line || [ -n "$line" ]; do
            if [[ $line == $2* ]]; then
@@ -69,6 +89,5 @@ _navtag_filedir() {
        done < <(navtag $mfp -L)
    fi
 }
-complete -F _navtag_filedir mvx cpx
+complete -F _navtag_filedir -o nospace mvx cpx
 
-mfp="/home/noah/projects/navtag/marks.txt"
