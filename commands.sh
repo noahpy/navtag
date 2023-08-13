@@ -46,6 +46,15 @@ touch(){
 }
 
 
+_navtag_label(){
+    while IFS="" read -r line || [ -n "$line" ]; do
+            if [[ $line == $2* ]]; then
+               COMPREPLY+=( $line )
+            fi
+       done < <(navtag $mfp -L)
+}
+
+complete -F _navtag_label -o nospace unmark
 
 
 _navtag_dir() {
@@ -100,4 +109,3 @@ _navtag_filedir() {
 complete -F _navtag_filedir -o nospace mv cp touch
 
 
-mfp="/home/noah/projects/navtag/marks.txt"
