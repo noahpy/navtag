@@ -19,30 +19,49 @@ function marks(){
     navtag $mfp -l
 }
 
+
+navtag_sort_args(){
+    navtag_pos_args=""
+    navtag_opt_args=""
+    for arg in "$@"; do
+        if [[ $arg == -* ]]; then
+            navtag_opt_args+="$arg "
+        else
+            navtag_pos_args+="$arg "
+        fi
+    done
+}
+
 cd(){
-    builtin cd $(navtag $mfp -t $@)
+    navtag_sort_args $@
+    builtin cd $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
 }
 
 mv(){
-    $(which mv) $(navtag $mfp -t $@)
+    navtag_sort_args $@
+    $(which mv) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
 }
 
 cp(){
-    $(which cp) $(navtag $mfp -t $@)
+    navtag_sort_args $@
+    $(which cp) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
 }
 
 mkdir(){
-    $(which mkdir) $(navtag $mfp -t $@)
+    navtag_sort_args $@
+    $(which mkdir) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
 }
 
 mc(){
-    results=$(navtag $mfp -t $@)
+    navtag_sort_args $@
+    results=$(navtag $mfp -t $navtag_pos_args)
     $(which mkdir) $results
     builtin cd $results
 }
 
 touch(){
-    $(which touch) $(navtag $mfp -t $@)
+    navtag_sort_args $@
+    $(which touch) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
 }
 
 

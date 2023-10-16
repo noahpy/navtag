@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
             case 'l':
             case 'L':
                 if (modi) {
-                    fprintf(stderr, "Found more than one option.\n");
+                    fprintf(stderr, "Found more than one valid option.\n");
                     return EXIT_FAILURE;
                 }
                 modi = optchar;
