@@ -49,6 +49,10 @@ The following list are all implemented built-in commands which support shortcuts
 - mkdir
 - touch
 
+### Dependencies
+You might need to install the [bash-completion](https://github.com/scop/bash-completion/) package.
+You can check this by running `_filedir` in your terminal.
+
 ## Examples:
 Here are some small examples given a file structure and shortcuts like below:
 ```shell
