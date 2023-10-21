@@ -6,7 +6,7 @@ echo "mfp=\"$(pwd)/marks.txt\"" >> commands.sh
 
 echo "Creating link in /usr/bin"
 sudo rm -f /usr/bin/navtag
-sudo ln -s navtag /usr/bin/navtag
+sudo ln -s "$(pwd)/navtag" /usr/bin/navtag
 
 echo
 echo "------- IMPORTANT -------"
