@@ -73,6 +73,15 @@ char* match_token(char* token, struct marks marks);
 size_t find_index(char* string, char c);
 
 
+/* Print a path to the stdout console. Replaces any detected whitespace
+ * with a whitespace preceeding with a '\'.
+ * @params:
+ *   - path (char*)
+ *   - path_len (size_t)
+ * */
+void print_path(char* path, size_t path_len);
+
+
 /* Takes ordered tokens and converts them to the final path
  * @params:
  *   - tokens (char**): array of token strings
