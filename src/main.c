@@ -1,13 +1,10 @@
-#define _XOPEN_SOURCE 500
 
+#include <stdlib.h>
 #include "utils.h"
 #include <getopt.h>
-#include <limits.h>
+#include <linux/limits.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-
-#define MAX_CONFIG_PATH_LEN 50
 
 char* HELP_MSG =
     "USAGE: navtag mark_file_path [OPTIONS] [OPTARGS]\n"
@@ -33,22 +30,31 @@ int main(int argc, char** argv)
 {
     char optchar;
     char modi = 0;
-    while ((optchar = getopt(argc, argv, "adhtlL")) != -1) {
+    while ((optchar = getopt(argc, argv, "adhtlL-")) != -1) {
         switch (optchar) {
         case 't':
         case 'a':
         case 'd':
         case 'l':
         case 'L':
-            if (modi) {
+            if (modi == 't') {
+                fprintf(stdout, "-%c ", optchar);
+                break;
+            } else if (modi) {
                 fprintf(stderr, "Found more than one valid option.\n");
                 return EXIT_FAILURE;
             }
             modi = optchar;
             break;
         case 'h':
+            if (modi == 't') {
+                fprintf(stdout, "-h ");
+                break;
+            }
             printf("%s\n", HELP_MSG);
             return EXIT_SUCCESS;
+        case '-':
+            fprintf(stdout, "%s ", argv[optind]);
         default:
             return EXIT_FAILURE;
         }
@@ -70,7 +76,7 @@ int main(int argc, char** argv)
         }
 
         char absolute_path[PATH_MAX];
-        if (absolute_path != realpath(argv[optind + 1], absolute_path)) {
+        if (!realpath(argv[optind + 1], absolute_path)) {
             perror("Error resolving absolute path");
             return EXIT_FAILURE;
         }

@@ -2,67 +2,65 @@
 function mark(){
     if [ $# -eq 1 ]
     then
-        navtag $mfp -a $1 $(pwd)
+        navtag "$mfp" -a "$1" $(pwd)
     fi
 
     if [ $# -gt 1 ]
     then
-        navtag $mfp -a $1 $2
+        navtag "$mfp" -a "$1" "$2"
     fi
 }
 
 function unmark(){
-    navtag $mfp -d $1
+    navtag "$mfp" -d "$1"
 }
 
 function marks(){
-    navtag $mfp -l
+    navtag "$mfp" -l
 }
 
 
-navtag_sort_args(){
-    navtag_pos_args=""
-    navtag_opt_args=""
-    for arg in "$@"; do
-        if [[ $arg == -* ]]; then
-            navtag_opt_args+="$arg "
-        else
-            navtag_pos_args+="$arg "
-        fi
-    done
-}
 
 cd(){
-    navtag_sort_args $@
-    builtin cd $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
+    result=$(navtag "$mfp" -t "$@")
+    if [[ -z "$result" ]]; then
+       return 
+    fi
+    builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
+
 
 mv(){
-    navtag_sort_args $@
-    $(which mv) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
+     navtag "$mfp" -t "$@" | xargs mv
 }
 
+
 cp(){
-    navtag_sort_args $@
-    $(which cp) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
+     navtag "$mfp" -t "$@" | xargs cp 
 }
 
 mkdir(){
-    navtag_sort_args $@
-    $(which mkdir) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
+     navtag "$mfp" -t "$@" | xargs mkdir
 }
 
 mc(){
-    navtag_sort_args $@
-    results=$(navtag $mfp -t $navtag_pos_args)
-    $(which mkdir) $results
-    builtin cd $results
+    result=$(navtag "$mfp" -t "$@")
+    if [[ -z "$result" ]]; then
+        return
+    fi
+    echo "$result" | xargs mkdir
+    builtin cd "$(echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
 
 touch(){
-    navtag_sort_args $@
-    $(which touch) $navtag_opt_args $(navtag $mfp -t $navtag_pos_args)
+    navtag "$mfp" -t "$@" | xargs touch
 }
+
+
+nvim(){
+    navtag "$mfp" -t "$@" | xargs nvim
+}
+
 
 
 _navtag_label(){
@@ -70,7 +68,7 @@ _navtag_label(){
             if [[ $line == $2* ]]; then
                COMPREPLY+=( $line )
             fi
-       done < <(navtag $mfp -L)
+       done < <(navtag "$mfp" -L)
 }
 
 complete -F _navtag_label -o nospace unmark
@@ -78,7 +76,7 @@ complete -F _navtag_label -o nospace unmark
 
 _navtag_dir() {
    local cur
-   cur=$(navtag $mfp -t $2)
+   cur=$(navtag "$mfp" -t "$2")
    _filedir -d
    for i in "${!COMPREPLY[@]}"; do
        original_element="${COMPREPLY[$i]}"
@@ -97,14 +95,14 @@ _navtag_dir() {
             if [[ $line == $2* ]]; then
                COMPREPLY+=( $line )
             fi
-       done < <(navtag $mfp -L)
+       done < <(navtag "$mfp" -L)
    fi 
 }
 complete -F _navtag_dir -o nospace cd mc mkdir
 
 _navtag_filedir() {
    local cur
-   cur=$(navtag $mfp -t $2)
+   cur=$(navtag "$mfp" -t "$2")
    _filedir
    for i in "${!COMPREPLY[@]}"; do
        original_element="${COMPREPLY[$i]}"
@@ -122,10 +120,9 @@ _navtag_filedir() {
            if [[ $line == $2* ]]; then
                COMPREPLY+=( $line )
            fi
-       done < <(navtag $mfp -L)
+       done < <(navtag "$mfp" -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mv cp touch
-
+complete -F _navtag_filedir -o nospace mv cp touch nvim nv
 
 mfp="/home/noah/projects/navtag/marks.txt"
