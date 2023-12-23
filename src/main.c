@@ -1,9 +1,9 @@
 
-#include <stdlib.h>
 #include "utils.h"
 #include <getopt.h>
 #include <linux/limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 char* HELP_MSG =
@@ -26,17 +26,23 @@ char* HELP_MSG =
     "  -L: List and print all labels.\n"
     "  -h: Print this message.";
 
+char* optstring = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-";
+
 int main(int argc, char** argv)
 {
     char optchar;
     char modi = 0;
-    while ((optchar = getopt(argc, argv, "adhtlL-")) != -1) {
+    int past_optind = 0;
+    while ((optchar = getopt(argc, argv, optstring)) != -1) {
         switch (optchar) {
         case 't':
         case 'a':
         case 'd':
         case 'l':
         case 'L':
+            if (optind == past_optind) {
+                break;
+            }
             if (modi == 't') {
                 fprintf(stdout, "-%c ", optchar);
                 break;
@@ -45,17 +51,30 @@ int main(int argc, char** argv)
                 return EXIT_FAILURE;
             }
             modi = optchar;
+            past_optind = optind;
             break;
         case 'h':
+            if (optind == past_optind) {
+                break;
+            }
             if (modi == 't') {
                 fprintf(stdout, "-h ");
+                past_optind = optind;
                 break;
             }
             printf("%s\n", HELP_MSG);
             return EXIT_SUCCESS;
-        case '-':
-            fprintf(stdout, "%s ", argv[optind]);
         default:
+            if (modi == 't') {
+                if (optind == past_optind) {
+                    break;
+                }
+                fprintf(stdout, "%s ", argv[optind - 1]);
+                past_optind = optind;
+                break;
+            }
+            fprintf(stderr, "Unknown option: %s\n", argv[optind - 1]);
+            fprintf(stderr, "Run navtag -h for usage information\n");
             return EXIT_FAILURE;
         }
     }

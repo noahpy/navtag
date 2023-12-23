@@ -20,11 +20,10 @@ function marks(){
 }
 
 
-
 cd(){
     result=$(navtag "$mfp" -t "$@")
     if [[ -z "$result" ]]; then
-       cd ~ 
+       cd ~
     fi
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
@@ -42,6 +41,7 @@ cp(){
 mkdir(){
      navtag "$mfp" -t "$@" | xargs mkdir
 }
+
 
 
 # Completion just with shortcut labels
@@ -106,4 +106,7 @@ _navtag_filedir() {
        done < <(navtag "$mfp" -L)
    fi
 }
+
 complete -F _navtag_filedir -o nospace mv cp 
+
+
