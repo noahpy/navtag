@@ -125,4 +125,5 @@ _navtag_filedir() {
    fi
 }
 complete -F _navtag_filedir -o nospace mv cp touch nvim nv
-mfp="/home/noah/projects/navtag/marks.txt"
+
+
