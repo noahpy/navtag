@@ -5,7 +5,7 @@ Path shortcut manager CLI for Unix-like systems.
 - List, add and remove shortcuts
 - Resolve shortcut labels to their path
 - Resolve paths including shortcut labels to their total path
-- Shell extension: shortcut support for the majority of built-in commands
+- Shell extension: shortcut support for built-in commands and more
 - Path / label tab-completion for extended commands
 
 ## Quickstart
@@ -47,9 +47,16 @@ The following list are all implemented built-in commands which support shortcuts
 - mv
 - mkdir
 
+If you would like addtional commands to support path shortcuts, they might be implemented in [this branch](https://github.com/noahpy/navtag/tree/local), or you could [configure them by yourself](#configure-additional-commands).
+
 ### Dependencies
 You might need to install the [bash-completion](https://github.com/scop/bash-completion/) package.
 You can check this by running `_filedir` in your terminal.
+
+### Tips and Tricks
+
+#### Configure Additional Commands
+
 
 ## Examples:
 Here are some small examples given a file structure and shortcuts like below:
