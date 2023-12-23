@@ -29,7 +29,6 @@ cd(){
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
 
-
 mv(){
      navtag "$mfp" -t "$@" | xargs mv
 }
@@ -39,12 +38,13 @@ cp(){
      navtag "$mfp" -t "$@" | xargs cp 
 }
 
+
 mkdir(){
      navtag "$mfp" -t "$@" | xargs mkdir
 }
 
 
-
+# Completion just with shortcut labels
 _navtag_label(){
     while IFS="" read -r line || [ -n "$line" ]; do
             if [[ $line == $2* ]]; then
@@ -55,7 +55,7 @@ _navtag_label(){
 
 complete -F _navtag_label -o nospace unmark
 
-
+# Completion with shortcut labels + directories
 _navtag_dir() {
    local cur
    cur=$(navtag "$mfp" -t "$2")
@@ -82,6 +82,7 @@ _navtag_dir() {
 }
 complete -F _navtag_dir -o nospace cd mc mkdir
 
+# Completion with shortcut labels + directories + files
 _navtag_filedir() {
    local cur
    cur=$(navtag "$mfp" -t "$2")
