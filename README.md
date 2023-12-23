@@ -53,6 +53,47 @@ If you would like addtional commands to support path shortcuts, they might be im
 You might need to install the [bash-completion](https://github.com/scop/bash-completion/) package.
 You can check this by running `_filedir` in your terminal.
 
+
+### Examples:
+Here are some small examples given a file structure and shortcuts like below:
+```shell
+.
+├── dir1
+│   └── dir1.1
+│       └── file1.txt
+├── dir2
+│   └── file2.txt
+└── file3.txt
+```
+```shell
+$ marks
+Mark file: /some/path/file.txt
+LABEL : PATH
+------------
+d11 : dir1/dir1.1
+d2 : dir2
+```
+**Add new shortcut (for current directory)**
+```shell
+mark my_shortcut
+```
+**Enter dir2**
+```shell
+cd d2
+```
+or
+```shell
+cd d2/
+```
+**Move file1.txt to dir2**
+```shell
+mv d11/file1.txt d2/.
+```
+**Copy file3.txt to dir1.1 as file4.txt**
+```shell
+cp file3.txt d11/file4.txt
+```
+
 ### Tips and Tricks
 
 #### Configure Additional Commands
@@ -98,43 +139,3 @@ This can be circumvented by specifying the file as follows:
 This works because shortcut labels are only considered up to the first '/' of a given path.
 
 
-
-### Examples:
-Here are some small examples given a file structure and shortcuts like below:
-```shell
-.
-├── dir1
-│   └── dir1.1
-│       └── file1.txt
-├── dir2
-│   └── file2.txt
-└── file3.txt
-```
-```shell
-$ marks
-Mark file: /some/path/file.txt
-LABEL : PATH
-------------
-d11 : dir1/dir1.1
-d2 : dir2
-```
-**Add new shortcut (for current directory)**
-```shell
-mark my_shortcut
-```
-**Enter dir2**
-```shell
-cd d2
-```
-or
-```shell
-cd d2/
-```
-**Move file1.txt to dir2**
-```shell
-mv d11/file1.txt d2/.
-```
-**Copy file3.txt to dir1.1 as file4.txt**
-```shell
-cp file3.txt d11/file4.txt
-```
