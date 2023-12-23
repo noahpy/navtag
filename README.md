@@ -57,7 +57,6 @@ You can check this by running `_filedir` in your terminal.
 
 #### Configure Additional Commands
 If you want your favorite command to support your shortscuts / tab-completion of shortcuts, you can check whether it was already implemented in [this branch](https://github.com/noahpy/navtag/tree/local). If not, follow the instructions below. Feel free to contribute your implementation to the *local* branch! :)
-
 **1. Override the current command**\
 Create a function which overrides the command, for this instance the `touch` command.
 ```shell
