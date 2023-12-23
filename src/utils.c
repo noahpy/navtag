@@ -242,8 +242,6 @@ char* match_token(char* token, struct marks marks)
     return token;
 }
 
-
-
 void print_path(char* path, size_t path_len)
 {
     if (find_index(path, ' ') != path_len) {
@@ -265,7 +263,10 @@ void translate_paths(size_t n, char** paths, char* file_path)
         char* result = match_token(paths[i], marks);
         print_path(result, strlen(result));
         // keep input slash
-        if (split_index < token_len - 1) {
+        if (token_len - split_index == 1) {
+            printf("/");
+        }
+        else if (split_index < token_len - 1) {
             printf("/");
             print_path(paths[i] + split_index + 1, token_len - split_index - 1);
         }
