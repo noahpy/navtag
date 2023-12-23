@@ -24,7 +24,7 @@ function marks(){
 cd(){
     result=$(navtag "$mfp" -t "$@")
     if [[ -z "$result" ]]; then
-       return 
+        return
     fi
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
@@ -46,7 +46,7 @@ mkdir(){
 mc(){
     result=$(navtag "$mfp" -t "$@")
     if [[ -z "$result" ]]; then
-        return
+       return 
     fi
     echo "$result" | xargs mkdir
     builtin cd "$(echo "$result" | xargs bash -c 'cd "$0" && pwd')"
@@ -54,11 +54,6 @@ mc(){
 
 touch(){
     navtag "$mfp" -t "$@" | xargs touch
-}
-
-
-nvim(){
-    navtag "$mfp" -t "$@" | xargs nvim
 }
 
 
@@ -123,6 +118,6 @@ _navtag_filedir() {
        done < <(navtag "$mfp" -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mv cp touch nvim nv
+complete -F _navtag_filedir -o nospace mv cp touch 
 
 mfp="/home/noah/projects/navtag/marks.txt"
