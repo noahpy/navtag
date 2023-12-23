@@ -90,7 +90,7 @@ You can also add aliases to support tab-completion.
 
 ### Troubleshooting
 
-## Examples:
+### Examples:
 Here are some small examples given a file structure and shortcuts like below:
 ```shell
 .
@@ -109,11 +109,11 @@ LABEL : PATH
 d11 : dir1/dir1.1
 d2 : dir2
 ```
-### Add new shortcut (for current directory)
+**Add new shortcut (for current directory)**
 ```shell
 mark my_shortcut
 ```
-### Enter dir2
+**Enter dir2**
 ```shell
 cd d2
 ```
@@ -121,11 +121,11 @@ or
 ```shell
 cd d2/
 ```
-### Move file1.txt to dir2
+**Move file1.txt to dir2**
 ```shell
 mv d11/file1.txt d2/.
 ```
-### Copy file3.txt to dir1.1 as file4.txt
+**Copy file3.txt to dir1.1 as file4.txt**
 ```shell
 cp file3.txt d11/file4.txt
 ```
