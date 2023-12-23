@@ -86,9 +86,18 @@ You can also add aliases to support tab-completion.
 
 
 #### Label naming
+In order to retain the current behaviour of commands as little as possible, it is adviced to name the shortcut labels to a file / directory after its filename.
+
+#### Label name collisions 
+Suppose there was a directory / file `docs` which has the same name as a shortcut label `docs`. 
+Using shortcut supported commands on this file might lead to the wrong file (destination of the shortcut) to be used.
+This can be circumvented by specifying the file as follows:
+```shell
+[command] ./docs
+```
+This works because shortcut labels are only considered up to the first '/' of a given path.
 
 
-### Troubleshooting
 
 ### Examples:
 Here are some small examples given a file structure and shortcuts like below:
