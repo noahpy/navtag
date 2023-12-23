@@ -24,7 +24,7 @@ function marks(){
 cd(){
     result=$(navtag "$mfp" -t "$@")
     if [[ -z "$result" ]]; then
-        return
+       cd ~ 
     fi
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
