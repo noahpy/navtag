@@ -20,7 +20,6 @@ function marks(){
 }
 
 
-
 cd(){
     result=$(navtag "$mfp" -t "$@")
     if [[ -z "$result" ]]; then
@@ -42,6 +41,25 @@ cp(){
 mkdir(){
      navtag "$mfp" -t "$@" | xargs mkdir
 }
+
+mc(){
+    result=$(navtag "$mfp" -t "$@")
+    if [[ -z "$result" ]]; then
+        return
+    fi
+    echo "$result" | xargs mkdir
+    builtin cd "$(echo "$result" | xargs bash -c 'cd "$0" && pwd')"
+}
+
+touch(){
+    navtag "$mfp" -t "$@" | xargs touch
+}
+
+
+nvim(){
+    navtag "$mfp" -t "$@" | xargs nvim
+}
+
 
 
 # Completion just with shortcut labels
@@ -106,6 +124,6 @@ _navtag_filedir() {
        done < <(navtag "$mfp" -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mv cp 
+complete -F _navtag_filedir -o nospace mv cp touch nvim nv
 
 mfp="/home/noah/projects/navtag/marks.txt"
