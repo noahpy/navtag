@@ -23,7 +23,7 @@ function marks(){
 cd(){
     result=$(navtag "$mfp" -t "$@")
     if [[ -z "$result" ]]; then
-       cd ~ 
+       cd ~
     fi
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
@@ -125,3 +125,4 @@ _navtag_filedir() {
    fi
 }
 complete -F _navtag_filedir -o nospace mv cp touch nvim nv
+mfp="/home/noah/projects/navtag/marks.txt"
