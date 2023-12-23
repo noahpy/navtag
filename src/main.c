@@ -73,7 +73,8 @@ int main(int argc, char** argv)
                 past_optind = optind;
                 break;
             }
-            fprintf(stderr, "Unknown option\n");
+            fprintf(stderr, "Unknown option: %s\n", argv[optind - 1]);
+            fprintf(stderr, "Run navtag -h for usage information\n");
             return EXIT_FAILURE;
         }
     }
