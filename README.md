@@ -58,7 +58,7 @@ You can check this by running `_filedir` in your terminal.
 #### Configure Additional Commands
 If you want your favorite command to support your shortscuts / tab-completion of shortcuts, you can check whether it was already implemented in [this branch](https://github.com/noahpy/navtag/tree/local). If not, follow the instructions below. Feel free to contribute your implementation to the *local* branch! :)
 
-1. Override the current command \\
+1. Override the current command \
 Create a function which overrides the command, for this instance the `touch` command.
 ```shell
 touch(){
@@ -69,7 +69,7 @@ Replace every occurence of `touch` with the name of your respective command.
 This does not work for commands which can not run as a subprocess, so you might need to implement some workarounds (see implementation of `cd`).
 Reload your shell to include the change.
 
-2. Add tab-completion for shortcut labels \\
+2. Add tab-completion for shortcut labels \
 In order to support tab-completion of shortcut labels, one needs to implement the respective completion function.
 These are already implemented in `commands.sh`: `_navtag_labels`, `_navtag_dir` and `_navtag_filedir`. 
 As the touch commands completion should include labels, directories and files, we need to use the `_navtag_filedir` function (see comments in `commands.sh`).
