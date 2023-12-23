@@ -45,9 +45,7 @@ The following list are all implemented built-in commands which support shortcuts
 - cd
 - cp
 - mv
-- mc
 - mkdir
-- touch
 
 ### Dependencies
 You might need to install the [bash-completion](https://github.com/scop/bash-completion/) package.

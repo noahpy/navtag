@@ -43,19 +43,6 @@ mkdir(){
      navtag "$mfp" -t "$@" | xargs mkdir
 }
 
-mc(){
-    result=$(navtag "$mfp" -t "$@")
-    if [[ -z "$result" ]]; then
-       return 
-    fi
-    echo "$result" | xargs mkdir
-    builtin cd "$(echo "$result" | xargs bash -c 'cd "$0" && pwd')"
-}
-
-touch(){
-    navtag "$mfp" -t "$@" | xargs touch
-}
-
 
 
 _navtag_label(){
@@ -118,6 +105,6 @@ _navtag_filedir() {
        done < <(navtag "$mfp" -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mv cp touch 
+complete -F _navtag_filedir -o nospace mv cp 
 
 mfp="/home/noah/projects/navtag/marks.txt"
