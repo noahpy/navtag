@@ -57,7 +57,7 @@ touch(){
 
 
 nvim(){
-    navtag "$mfp" -t "$@" | xargs nvim
+    $(which nvim) $(navtag "$mfp" -t "$@" | xargs bash -c 'echo "$(pwd)/$0"')
 }
 
 
