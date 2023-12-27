@@ -25,6 +25,14 @@ cd(){
     if [[ -z "$result" ]]; then
        cd ~
     fi
+    if [[ "$result" = "-" ]]; then
+        if [[ -z "$OLDPWD" ]]; then
+            echo "cd: OLDPWD not set"
+            return
+        fi
+        cd "$OLDPWD"
+        return
+    fi
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
 
@@ -124,6 +132,7 @@ _navtag_filedir() {
        done < <(navtag "$mfp" -L)
    fi
 }
-complete -F _navtag_filedir -o nospace mv cp touch nvim nv
+
+complete -F _navtag_filedir -o nospace mv cp 
 
 
