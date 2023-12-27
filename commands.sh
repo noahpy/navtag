@@ -25,6 +25,14 @@ cd(){
     if [[ -z "$result" ]]; then
        cd ~
     fi
+    if [[ "$result" = "-" ]]; then
+        if [[ -z "$OLDPWD" ]]; then
+            echo "cd: OLDPWD not set"
+            return
+        fi
+        cd "$OLDPWD"
+        return
+    fi
     builtin cd "$( echo "$result" | xargs bash -c 'cd "$0" && pwd')"
 }
 
