@@ -200,12 +200,13 @@ struct marks load_marks(char* file_path){
             buffer[strlen(buffer)-1] = '\0';
         size_t path_length = strlen(buffer) - split_index;
         buffer[split_index] = '\0';
-        char* label = malloc(split_index);
+        char* label = malloc(split_index + 1);
         if(!label){
             fprintf(stderr, "Could not allocate from heap\n");
             exit(1);
         }
-        strncpy(label, buffer, split_index);
+        memcpy(label, buffer, split_index);
+        label[split_index] = '\0';
         labels[i] = label;
         char* path = malloc(path_length);
         if(!path){
